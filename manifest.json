@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "X Filter - 瀑布流视图",
+  "version": "1.0.0",
+  "description": "将 X (Twitter) 转换为瀑布流视图，专注于图片和视频内容",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://twitter.com/*",
+    "https://x.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+      ],
+      "js": [
+        "utils/helpers.js",
+        "utils/storage.js",
+        "content/observer.js",
+        "content/media.js",
+        "content/layout.js",
+        "content/style.js",
+        "content/content.js"
+      ],
+      "css": [
+        "styles/waterfall.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles/*.css",
+        "assets/*"
+      ],
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+      ]
+    }
+  ]
+}
+

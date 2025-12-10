@@ -1,0 +1,178 @@
+/* X Filter 瀑布流样式 */
+
+:root {
+  --xfilter-columns: 3;
+  --xfilter-gap: 16px;
+  --xfilter-card-bg: #ffffff;
+  --xfilter-card-hover-bg: #f7f9f9;
+  --xfilter-overlay-bg: rgba(0, 0, 0, 0.7);
+  --xfilter-text-color: #0f1419;
+  --xfilter-secondary-color: #536471;
+  --xfilter-border-radius: 16px;
+  --xfilter-transition: all 0.3s ease;
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --xfilter-card-bg: #16181c;
+    --xfilter-card-hover-bg: #1e2126;
+    --xfilter-text-color: #e7e9ea;
+    --xfilter-secondary-color: #71767b;
+  }
+}
+
+/* 瀑布流容器 */
+.xfilter-waterfall {
+  display: grid;
+  grid-template-columns: repeat(var(--columns, 3), 1fr);
+  gap: var(--gap, 16px);
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 响应式布局 */
+@media (max-width: 1200px) {
+  .xfilter-waterfall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .xfilter-waterfall {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 10px;
+  }
+}
+
+/* 媒体卡片 */
+.xfilter-card {
+  position: relative;
+  background: var(--xfilter-card-bg);
+  border-radius: var(--xfilter-border-radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--xfilter-transition);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.xfilter-card:hover {
+  background: var(--xfilter-card-hover-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* 媒体容器 */
+.xfilter-media-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+/* 图片样式 */
+.xfilter-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* 视频样式 */
+.xfilter-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* 多图网格 */
+.xfilter-multi-image {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.xfilter-multi-image .xfilter-image {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* 更多图片计数 */
+.xfilter-more-count {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 信息覆盖层 */
+.xfilter-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--xfilter-overlay-bg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  color: white;
+}
+
+.xfilter-card:hover .xfilter-overlay {
+  opacity: 1;
+}
+
+.xfilter-overlay-content {
+  width: 100%;
+}
+
+.xfilter-author {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xfilter-text {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.xfilter-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.xfilter-stats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 隐藏原始时间线 */
+[data-xfilter-hidden="true"] {
+  display: none !important;
+}
+
