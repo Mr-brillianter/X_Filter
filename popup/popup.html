@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Filter Control</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">
+        <img src="../assets/icons/icon48.png" alt="Logo" class="logo" onerror="this.style.display='none'">
+        <h1>X Filter</h1>
+      </div>
+      <div class="version">v1.0.0</div>
+    </div>
+
+    <div class="main-controls">
+      <div class="control-item">
+        <div class="control-label">
+          <span class="label-title">启用瀑布流</span>
+          <span class="label-desc">开启沉浸式图片/视频浏览体验</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="toggle-filter">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="stats-panel">
+      <h3>本次统计</h3>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-value" id="count-loaded">0</span>
+          <span class="stat-label">已加载</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="count-media">0</span>
+          <span class="stat-label">媒体贴</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button id="open-settings" class="btn-text">高级设置</button>
+      <a href="https://github.com/mr-brillianter/x_filter" target="_blank" class="github-link">GitHub</a>
+    </div>
+  </div>
+  <script src="../utils/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
